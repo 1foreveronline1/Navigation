@@ -1,10 +1,3 @@
-//
-//  FeedViewController.swift
-//  Navigation
-//
-//  Created by Андрей Аснач on 11.11.2022.
-//
-
 import UIKit
 
 class FeedViewController: UIViewController {
@@ -14,6 +7,7 @@ class FeedViewController: UIViewController {
         view.backgroundColor = .lightGray
         
         let button = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))
+          button.center = view.center
           button.backgroundColor = .white
           button.setTitle("Мой пост", for: .normal)
           button.setTitleColor(.black, for: .normal)
@@ -23,24 +17,15 @@ class FeedViewController: UIViewController {
           self.view.addSubview(button)
         
         
-        // Do any additional setup after loading the view.
     }
+    
+    var post = Post(title: "Мой новый пост")
+    
     @objc private func buttonAction() {
             let postViewController = PostViewController()
+            postViewController.titlePost = post.title
             self.navigationController?.pushViewController(postViewController, animated: true)
         }
     
     
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
