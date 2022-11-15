@@ -15,6 +15,7 @@
 		65FD615B291E91FC00F2433F /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FD615A291E91FC00F2433F /* PostViewController.swift */; };
 		65FD615D291E9C7100F2433F /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FD615C291E9C7100F2433F /* Post.swift */; };
 		65FD615F291EA35300F2433F /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FD615E291EA35300F2433F /* InfoViewController.swift */; };
+		65FD61612923C71C00F2433F /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FD61602923C71C00F2433F /* ProfileHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		65FD615A291E91FC00F2433F /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		65FD615C291E9C7100F2433F /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		65FD615E291EA35300F2433F /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		65FD61602923C71C00F2433F /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +46,9 @@
 		65FD612E291E72AB00F2433F = {
 			isa = PBXGroup;
 			children = (
+				65FD61622923C72F00F2433F /* Profile */,
+				65FD61602923C71C00F2433F /* ProfileHeaderView.swift */,
+				65FD6156291E871100F2433F /* ProfileViewController.swift */,
 				65FD6139291E72AB00F2433F /* Navigation */,
 				65FD6138291E72AB00F2433F /* Products */,
 			);
@@ -62,7 +67,6 @@
 			children = (
 				65FD613A291E72AB00F2433F /* AppDelegate.swift */,
 				65FD613C291E72AB00F2433F /* SceneDelegate.swift */,
-				65FD6156291E871100F2433F /* ProfileViewController.swift */,
 				65FD6154291E870400F2433F /* FeedViewController.swift */,
 				65FD615A291E91FC00F2433F /* PostViewController.swift */,
 				65FD615C291E9C7100F2433F /* Post.swift */,
@@ -71,6 +75,13 @@
 				65FD6148291E72AB00F2433F /* Info.plist */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		65FD61622923C72F00F2433F /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +160,7 @@
 				65FD615D291E9C7100F2433F /* Post.swift in Sources */,
 				65FD613D291E72AB00F2433F /* SceneDelegate.swift in Sources */,
 				65FD615B291E91FC00F2433F /* PostViewController.swift in Sources */,
+				65FD61612923C71C00F2433F /* ProfileHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
