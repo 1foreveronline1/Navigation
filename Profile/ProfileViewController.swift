@@ -12,10 +12,10 @@ class ProfileViewController: UIViewController {
         viewWillLayoutSubviews()
         view.backgroundColor = .lightGray
         self.navigationItem.title = "Profile"
-        
         profileHeader.frame = view.bounds
         
         view.addSubview(profileHeader)
         
     }
+    
 }

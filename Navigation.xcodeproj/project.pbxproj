@@ -47,9 +47,8 @@
 			isa = PBXGroup;
 			children = (
 				65FD61622923C72F00F2433F /* Profile */,
-				65FD61602923C71C00F2433F /* ProfileHeaderView.swift */,
-				65FD6156291E871100F2433F /* ProfileViewController.swift */,
 				65FD6139291E72AB00F2433F /* Navigation */,
+				65FD6143291E72AB00F2433F /* Assets.xcassets */,
 				65FD6138291E72AB00F2433F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -71,7 +70,6 @@
 				65FD615A291E91FC00F2433F /* PostViewController.swift */,
 				65FD615C291E9C7100F2433F /* Post.swift */,
 				65FD615E291EA35300F2433F /* InfoViewController.swift */,
-				65FD6143291E72AB00F2433F /* Assets.xcassets */,
 				65FD6148291E72AB00F2433F /* Info.plist */,
 			);
 			path = Navigation;
@@ -80,6 +78,8 @@
 		65FD61622923C72F00F2433F /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				65FD61602923C71C00F2433F /* ProfileHeaderView.swift */,
+				65FD6156291E871100F2433F /* ProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
