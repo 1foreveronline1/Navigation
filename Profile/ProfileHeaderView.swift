@@ -1,66 +1,134 @@
 import UIKit
 
 class ProfileHeaderView: UIView {
-    var newTitle: UILabel!
-    var profilePic: UIImageView!
-    var profileStat: UILabel!
-    var profileName: UILabel!
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-       
-        
-        let rect = UIScreen.main.bounds
+        self.addSubview(profileView)
+        addMySubview()
+        setupView()
+    }
+    
+    func addMySubview() {
+        profileView.addSubview(avatarImageView)
+        profileView.addSubview(fullNameLabel)
+        profileView.addSubview(statusLabel)
+        profileView.addSubview(setStatusButton)
+        profileView.addSubview(statusTextField)
+    }
+    
+    func setupView() {
+        let safeArea = self.safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+            profileView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            profileView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            profileView.widthAnchor.constraint(equalTo: self.widthAnchor),
+            profileView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+                
+            avatarImageView.widthAnchor.constraint(equalToConstant: 100),
+            avatarImageView.heightAnchor.constraint(equalToConstant: 100),
+            avatarImageView.topAnchor.constraint(equalTo: profileView.topAnchor, constant: 16),
+            avatarImageView.leadingAnchor.constraint(equalTo: profileView.leadingAnchor, constant: 16),
+                
+            fullNameLabel.topAnchor.constraint(equalTo: profileView.topAnchor, constant: 27),
+            fullNameLabel.leadingAnchor.constraint(equalTo: profileView.leadingAnchor, constant: 150),
+                
+            setStatusButton.heightAnchor.constraint(equalToConstant: 50),
+            setStatusButton.widthAnchor.constraint(equalTo: profileView.widthAnchor, constant: -32),
+            setStatusButton.topAnchor.constraint(equalTo: profileView.topAnchor, constant: 160),
+            setStatusButton.centerXAnchor.constraint(equalTo: profileView.centerXAnchor),
+                
+            statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -64),
+            statusLabel.leadingAnchor.constraint(equalTo: profileView.leadingAnchor, constant: 150),
+                
+            statusTextField.heightAnchor.constraint(equalToConstant: 40),
+            statusTextField.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -16),
+            statusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16)
+        ])
+    }
+    
+        let profileView: UIView = {
+            let view = UIView()
+            view.backgroundColor = .lightGray
+            view.translatesAutoresizingMaskIntoConstraints = false
+            return view
+        }()
 
         
-        newTitle = UILabel(frame: CGRect(x: 0, y: 0, width: rect.width, height: rect.height / 9))
+        let avatarImageView: UIImageView = {
+            let picture = UIImageView()
+            picture.image = UIImage(named: "Image")
+            picture.clipsToBounds = true
+            picture.layer.borderWidth = 3
+            picture.layer.borderColor = UIColor.white.cgColor
+            picture.layer.cornerRadius = 50
+            picture.translatesAutoresizingMaskIntoConstraints = false
+            return picture
+        }()
         
-        newTitle.font = UIFont.boldSystemFont(ofSize: 18)
-        newTitle.textAlignment = .center
-        newTitle.backgroundColor = .white
-        self.addSubview(newTitle)
+        let fullNameLabel: UILabel = {
+            let name = UILabel()
+            name.textAlignment = .left
+            name.font = UIFont.boldSystemFont(ofSize: 18)
+            name.text = "Кот с цепью"
+            name.translatesAutoresizingMaskIntoConstraints = false
+            return name
+        }()
         
-        profilePic = UIImageView(frame: CGRect(x: 16, y: rect.height / 9 + 16, width: 100, height: 100))
-        profilePic.image = UIImage(named: "Image")
-        profilePic.clipsToBounds = true
-        profilePic.layer.borderWidth = 3
-        profilePic.layer.borderColor = UIColor.white.cgColor
-        profilePic.layer.cornerRadius = 50
-        self.addSubview(profilePic)
+        let statusLabel: UILabel = {
+            let status = UILabel()
+            status.textAlignment = .left
+            status.font = UIFont.systemFont(ofSize: 14)
+            status.text = "Крутой блин..."
+            status.textColor = .gray
+            status.translatesAutoresizingMaskIntoConstraints = false
+            return status
+        }()
+    
+        let statusTextField: UITextField = {
+           let text = UITextField ()
+           text.backgroundColor = .white
+           text.font = .systemFont(ofSize: 15, weight: .regular)
+           text.textColor = .black
+           text.layer.cornerRadius = 12
+           text.borderStyle = .roundedRect
+           text.layer.borderWidth = 1
+           text.clipsToBounds = true
+           text.placeholder = "Ваш статус..."
+           text.keyboardType = .default
+           text.clearButtonMode = .whileEditing
+           text.contentHorizontalAlignment = .center
+           text.returnKeyType = .done
+           text.addTarget(Any?.self, action: #selector(statusTextChanged), for: .editingChanged)
+           text.translatesAutoresizingMaskIntoConstraints = false
+           return text
+       }()
         
-        profileName = UILabel(frame: CGRect(x: 132, y: rect.height / 9 + 27, width: 200, height: 18))
-        profileName.textAlignment = .left
-        profileName.font = UIFont.boldSystemFont(ofSize: 18)
-        profileName.text = "Кот с цепью"
-        self.addSubview(profileName)
-        
-        profileStat = UILabel(frame: CGRect(x: 132, y: rect.height / 9 + 84, width: 200, height: 14))
-        profileStat.textAlignment = .left
-        profileStat.font = UIFont.systemFont(ofSize: 14)
-        profileStat.text = "Крутой блин..."
-        profileStat.textColor = .gray
-        self.addSubview(profileStat)
-        
-        let statBut = UIButton(frame: CGRect(x: 16, y: rect.height / 9 + 132, width: rect.width - 32, height: 50))
-        statBut.setTitle("Show status", for: .normal)
-        statBut.backgroundColor = .systemBlue
-        statBut.layer.cornerRadius = 4
-        statBut.setTitleColor(.white, for: .normal)
-        statBut.layer.shadowOffset = .init(width: 4, height: 4)
-        statBut.layer.shadowColor = UIColor.black.cgColor
-        statBut.layer.shadowRadius = 4
-        statBut.layer.shadowOpacity = 0.7
-        statBut.addTarget(self, action: #selector(statButAction), for: .touchUpInside)
-        self.addSubview(statBut)
-        
-       }
+        let setStatusButton: UIButton = {
+            let button = UIButton()
+            button.setTitle("Изменить статус", for: .normal)
+            button.backgroundColor = .systemBlue
+            button.layer.cornerRadius = 4
+            button.setTitleColor(.white, for: .normal)
+            button.layer.shadowOffset = .init(width: 4, height: 4)
+            button.layer.shadowColor = UIColor.black.cgColor
+            button.layer.shadowRadius = 4
+            button.layer.shadowOpacity = 0.7
+            button.addTarget(Any?.self, action: #selector(statButAction), for: .touchUpInside)
+            button.translatesAutoresizingMaskIntoConstraints = false
+            return button
+        }()
        
+    var statusText: String = ""
+    
     @objc func statButAction() {
-        var text: String
-        text = profileStat.text!
-        print(text)
+        statusLabel.text = statusText
     }
+    
+    @objc func statusTextChanged(_ textField: UITextField) {
+            statusText = textField.text ?? ""
+            }
     
        required init?(coder: NSCoder) {
            fatalError("init(coder:) has not been implemented")
