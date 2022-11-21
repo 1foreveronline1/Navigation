@@ -46,9 +46,7 @@
 		65FD612E291E72AB00F2433F = {
 			isa = PBXGroup;
 			children = (
-				65FD61622923C72F00F2433F /* Profile */,
 				65FD6139291E72AB00F2433F /* Navigation */,
-				65FD6143291E72AB00F2433F /* Assets.xcassets */,
 				65FD6138291E72AB00F2433F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -64,6 +62,8 @@
 		65FD6139291E72AB00F2433F /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				65FD61622923C72F00F2433F /* Profile */,
+				65FD6143291E72AB00F2433F /* Assets.xcassets */,
 				65FD613A291E72AB00F2433F /* AppDelegate.swift */,
 				65FD613C291E72AB00F2433F /* SceneDelegate.swift */,
 				65FD6154291E870400F2433F /* FeedViewController.swift */,
