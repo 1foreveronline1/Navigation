@@ -9,10 +9,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return feedVC
     }
     func createSecondController() -> UINavigationController{
-        let profileVC = UINavigationController(rootViewController: ProfileViewController())
-        profileVC.title = "Профиль"
-        profileVC.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "doc.richtext"), tag: 0)
-        return profileVC
+        let logInVC = UINavigationController(rootViewController: LogInViewController())
+        logInVC.title = "Профиль"
+        logInVC.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "doc.richtext"), tag: 0)
+        return logInVC
     }
     func createTabBar() -> UITabBarController{
         let tabBar = UITabBarController()
