@@ -11,7 +11,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func createSecondController() -> UINavigationController{
         let logInVC = UINavigationController(rootViewController: LogInViewController())
         logInVC.title = "Профиль"
-        logInVC.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "doc.richtext"), tag: 0)
+        logInVC.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.circle"), tag: 0)
         return logInVC
     }
     func createTabBar() -> UITabBarController{
