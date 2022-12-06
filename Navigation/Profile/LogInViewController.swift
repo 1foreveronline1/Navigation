@@ -12,16 +12,36 @@ class LogInViewController: UIViewController {
         return logo
     }()
     
+    var stackForLogin: UIStackView = {
+        let stack = UIStackView()
+        stack.layer.borderColor = UIColor.lightGray.cgColor
+        stack.backgroundColor = .systemGray6
+        stack.layer.borderWidth = 0.5
+        stack.layer.cornerRadius = 10
+        stack.clipsToBounds = true
+        stack.axis = .vertical
+        stack.alignment = .fill
+        stack.distribution = .fillEqually
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+        
+    var separatorView: UIView = {
+        var view = UIView()
+        view.backgroundColor = .lightGray
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     var logInTextField: UITextField = {
         let logIn = UITextField()
         logIn.backgroundColor = .systemGray6
         logIn.textColor = .black
         logIn.font = .systemFont(ofSize: 16)
         logIn.textAlignment = .left
-        logIn.layer.cornerRadius = 10
-        logIn.layer.borderWidth = 0.5
-        logIn.placeholder = "   Email or phone"
-        logIn.layer.borderColor = UIColor.lightGray.cgColor
+        logIn.attributedPlaceholder = NSAttributedString (
+            string: "Email or phone"
+        )
         logIn.autocapitalizationType = .none
         logIn.translatesAutoresizingMaskIntoConstraints = false
         return logIn
@@ -33,10 +53,9 @@ class LogInViewController: UIViewController {
         password.textColor = .black
         password.font = .systemFont(ofSize: 16)
         password.textAlignment = .left
-        password.layer.cornerRadius = 10
-        password.layer.borderWidth = 0.5
-        password.placeholder = "    Password"
-        password.layer.borderColor = UIColor.lightGray.cgColor
+        password.attributedPlaceholder = NSAttributedString (
+            string: "Password"
+        )
         password.autocapitalizationType = .none
         password.isSecureTextEntry = true
         password.translatesAutoresizingMaskIntoConstraints = false
@@ -64,6 +83,7 @@ class LogInViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         addSubviews()
         setupScrollView()
+        scrollView.keyboardDismissMode = .onDrag
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,8 +100,10 @@ class LogInViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(vkLogo)
+        contentView.addSubview(stackForLogin)
         contentView.addSubview(logInTextField)
         contentView.addSubview(passwordTextField)
+        stackForLogin.addSubview(separatorView)
         contentView.addSubview(logInButton)
         contentView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -106,17 +128,25 @@ class LogInViewController: UIViewController {
             vkLogo.heightAnchor.constraint(equalToConstant: 100),
             vkLogo.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
             
+            stackForLogin.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            stackForLogin.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
+            stackForLogin.heightAnchor.constraint(equalToConstant: 100),
+            stackForLogin.topAnchor.constraint(equalTo: vkLogo.bottomAnchor, constant: 120),
             
-            logInTextField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            logInTextField.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
-            logInTextField.heightAnchor.constraint(equalToConstant: 50),
-            logInTextField.topAnchor.constraint(equalTo: vkLogo.bottomAnchor, constant: 120),
+            logInTextField.centerXAnchor.constraint(equalTo: stackForLogin.centerXAnchor),
+            logInTextField.widthAnchor.constraint(equalTo: stackForLogin.widthAnchor, constant: -40),
+            logInTextField.heightAnchor.constraint(equalToConstant: 48),
+            logInTextField.topAnchor.constraint(equalTo: stackForLogin.topAnchor, constant: 1),
             
+            separatorView.centerXAnchor.constraint(equalTo: stackForLogin.centerXAnchor),
+            separatorView.widthAnchor.constraint(equalTo: stackForLogin.widthAnchor),
+            separatorView.heightAnchor.constraint(equalToConstant: 0.5),
+            separatorView.topAnchor.constraint(equalTo: logInTextField.bottomAnchor),
             
-            passwordTextField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            passwordTextField.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
-            passwordTextField.heightAnchor.constraint(equalToConstant: 50),
-            passwordTextField.topAnchor.constraint(equalTo: logInTextField.bottomAnchor),
+            passwordTextField.centerXAnchor.constraint(equalTo: stackForLogin.centerXAnchor),
+            passwordTextField.widthAnchor.constraint(equalTo: stackForLogin.widthAnchor, constant: -40),
+            passwordTextField.heightAnchor.constraint(equalToConstant: 48),
+            passwordTextField.topAnchor.constraint(equalTo: logInTextField.bottomAnchor, constant: 1),
             
             logInButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             logInButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
@@ -126,8 +156,22 @@ class LogInViewController: UIViewController {
     }
         
     @objc func buttonAction() {
-        let profileVC = ProfileViewController()
-        self.navigationController?.pushViewController(profileVC, animated: true)
+        if !logInTextField.hasText {
+            logInTextField.attributedPlaceholder = NSAttributedString (
+                string: "Необходим логин!!!",
+                attributes: [NSAttributedString.Key.foregroundColor: UIColor.red]
+            )
+        }
+        if !passwordTextField.hasText {
+            passwordTextField.attributedPlaceholder = NSAttributedString (
+                string: "Необходим пароль!!!",
+                attributes: [NSAttributedString.Key.foregroundColor: UIColor.red]
+            )
+        }
+        if logInTextField.hasText && passwordTextField.hasText{
+            let profileVC = ProfileViewController()
+            self.navigationController?.pushViewController(profileVC, animated: true)
+        }
     }
         
         
