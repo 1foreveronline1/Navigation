@@ -40,7 +40,7 @@ class LogInViewController: UIViewController {
         logIn.font = .systemFont(ofSize: 16)
         logIn.textAlignment = .left
         logIn.attributedPlaceholder = NSAttributedString (
-            string: "Email or phone"
+            string: "Почта или номер телефона"
         )
         logIn.autocapitalizationType = .none
         logIn.translatesAutoresizingMaskIntoConstraints = false
@@ -54,7 +54,7 @@ class LogInViewController: UIViewController {
         password.font = .systemFont(ofSize: 16)
         password.textAlignment = .left
         password.attributedPlaceholder = NSAttributedString (
-            string: "Password"
+            string: "Пароль"
         )
         password.autocapitalizationType = .none
         password.isSecureTextEntry = true
@@ -76,6 +76,17 @@ class LogInViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     } ()
+    
+    var passwordCounter: UILabel = {
+        let counter = UILabel()
+        counter.text = "Пароль слишком короткий"
+        counter.font = .systemFont(ofSize: 14)
+        counter.textAlignment = .center
+        counter.textColor = .lightGray
+        counter.isHidden = true
+        counter.translatesAutoresizingMaskIntoConstraints = false
+        return counter
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,6 +115,7 @@ class LogInViewController: UIViewController {
         contentView.addSubview(logInTextField)
         contentView.addSubview(passwordTextField)
         stackForLogin.addSubview(separatorView)
+        contentView.addSubview(passwordCounter)
         contentView.addSubview(logInButton)
         contentView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -148,6 +160,11 @@ class LogInViewController: UIViewController {
             passwordTextField.heightAnchor.constraint(equalToConstant: 48),
             passwordTextField.topAnchor.constraint(equalTo: logInTextField.bottomAnchor, constant: 1),
             
+            passwordCounter.centerXAnchor.constraint(equalTo: passwordTextField.centerXAnchor),
+            passwordCounter.widthAnchor.constraint(equalTo: passwordTextField.widthAnchor),
+            passwordCounter.heightAnchor.constraint(equalToConstant: 14),
+            passwordCounter.topAnchor.constraint(equalTo: stackForLogin.bottomAnchor),
+            
             logInButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             logInButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
             logInButton.heightAnchor.constraint(equalToConstant: 50),
@@ -156,10 +173,26 @@ class LogInViewController: UIViewController {
     }
         
     @objc func buttonAction() {
+        let a = emptyLogIn()
+        let b = shortPassword()
+        let c = standartLogIn()
+        if a == 0 && b == 0 && c == 0 {
+            let profileVC = ProfileViewController()
+            self.navigationController?.pushViewController(profileVC, animated: true)
+        }
+    }
+        
+    func emptyLogIn() -> Int {
+        var checker = 0
         if !logInTextField.hasText {
             logInTextField.attributedPlaceholder = NSAttributedString (
                 string: "Необходим логин!!!",
                 attributes: [NSAttributedString.Key.foregroundColor: UIColor.red]
+            )
+            checker += 1
+        } else {
+            logInTextField.attributedPlaceholder = NSAttributedString (
+                string: "Почта или номер телефона"
             )
         }
         if !passwordTextField.hasText {
@@ -167,13 +200,41 @@ class LogInViewController: UIViewController {
                 string: "Необходим пароль!!!",
                 attributes: [NSAttributedString.Key.foregroundColor: UIColor.red]
             )
+            checker += 1
+        } else {
+            passwordTextField.attributedPlaceholder = NSAttributedString (
+                string: "Пароль"
+            )
         }
-        if logInTextField.hasText && passwordTextField.hasText{
-            let profileVC = ProfileViewController()
-            self.navigationController?.pushViewController(profileVC, animated: true)
-        }
+        return checker
     }
-        
+    
+    func shortPassword() -> Int {
+        var checker = 0
+        let count = passwordTextField.text?.count ?? -1
+        if count < 8 && count != 0 {
+            passwordCounter.isHidden = false
+            checker += 1
+        } else {
+            passwordCounter.isHidden = true
+        }
+        return checker
+    }
+    
+    func wrongLogIn() {
+        let alert = UIAlertController(title: "Неправильный логин или пароль", message: "Попробуйте еще раз", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func standartLogIn() -> Int{
+        var checker = 0
+        if emptyLogIn() == 0 && (logInTextField.text != "admin@mail.ru" || passwordTextField.text != "12345678") {
+            wrongLogIn()
+            checker += 1
+        }
+        return checker
+    }
         
     func subscribeKeyboardEvents() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
