@@ -48,7 +48,9 @@ class ProfileHeaderView: UIView {
        text.borderStyle = .roundedRect
        text.layer.borderWidth = 1
        text.clipsToBounds = true
-       text.placeholder = "Ваш статус..."
+       text.attributedPlaceholder = NSAttributedString(
+        string: "Ваш статус..."
+       )
        text.keyboardType = .default
        text.clearButtonMode = .whileEditing
        text.contentHorizontalAlignment = .center
@@ -126,7 +128,20 @@ class ProfileHeaderView: UIView {
     }
     
     @objc func statButAction() {
-        statusLabel.text = statusText
+        if statusText == ""{
+            statusTextField.attributedPlaceholder = NSAttributedString(
+                string: "Введите статус!",
+                attributes: [NSAttributedString.Key.foregroundColor: UIColor.red]
+            )
+        }else {
+            statusTextField.attributedPlaceholder = NSAttributedString(
+                string: "Ваш статус..."
+            )
+            statusLabel.text = statusText
+            statusTextField.text = ""
+            statusText = ""
+        }
+        
     }
     
     @objc func statusTextChanged(_ textField: UITextField) {
