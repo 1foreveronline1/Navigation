@@ -39,7 +39,9 @@ class LogInViewController: UIViewController {
         logIn.textColor = .black
         logIn.font = .systemFont(ofSize: 16)
         logIn.textAlignment = .left
-        logIn.placeholder = "   Email or phone"
+        logIn.attributedPlaceholder = NSAttributedString (
+            string: "Email or phone"
+        )
         logIn.autocapitalizationType = .none
         logIn.translatesAutoresizingMaskIntoConstraints = false
         return logIn
@@ -51,7 +53,9 @@ class LogInViewController: UIViewController {
         password.textColor = .black
         password.font = .systemFont(ofSize: 16)
         password.textAlignment = .left
-        password.placeholder = "    Password"
+        password.attributedPlaceholder = NSAttributedString (
+            string: "Password"
+        )
         password.autocapitalizationType = .none
         password.isSecureTextEntry = true
         password.translatesAutoresizingMaskIntoConstraints = false
@@ -130,7 +134,7 @@ class LogInViewController: UIViewController {
             stackForLogin.topAnchor.constraint(equalTo: vkLogo.bottomAnchor, constant: 120),
             
             logInTextField.centerXAnchor.constraint(equalTo: stackForLogin.centerXAnchor),
-            logInTextField.widthAnchor.constraint(equalTo: stackForLogin.widthAnchor, constant: -20),
+            logInTextField.widthAnchor.constraint(equalTo: stackForLogin.widthAnchor, constant: -40),
             logInTextField.heightAnchor.constraint(equalToConstant: 48),
             logInTextField.topAnchor.constraint(equalTo: stackForLogin.topAnchor, constant: 1),
             
@@ -140,7 +144,7 @@ class LogInViewController: UIViewController {
             separatorView.topAnchor.constraint(equalTo: logInTextField.bottomAnchor),
             
             passwordTextField.centerXAnchor.constraint(equalTo: stackForLogin.centerXAnchor),
-            passwordTextField.widthAnchor.constraint(equalTo: stackForLogin.widthAnchor, constant: -20),
+            passwordTextField.widthAnchor.constraint(equalTo: stackForLogin.widthAnchor, constant: -40),
             passwordTextField.heightAnchor.constraint(equalToConstant: 48),
             passwordTextField.topAnchor.constraint(equalTo: logInTextField.bottomAnchor, constant: 1),
             
@@ -152,8 +156,22 @@ class LogInViewController: UIViewController {
     }
         
     @objc func buttonAction() {
-        let profileVC = ProfileViewController()
-        self.navigationController?.pushViewController(profileVC, animated: true)
+        if !logInTextField.hasText {
+            logInTextField.attributedPlaceholder = NSAttributedString (
+                string: "Необходим логин!!!",
+                attributes: [NSAttributedString.Key.foregroundColor: UIColor.red]
+            )
+        }
+        if !passwordTextField.hasText {
+            passwordTextField.attributedPlaceholder = NSAttributedString (
+                string: "Необходим пароль!!!",
+                attributes: [NSAttributedString.Key.foregroundColor: UIColor.red]
+            )
+        }
+        if logInTextField.hasText && passwordTextField.hasText{
+            let profileVC = ProfileViewController()
+            self.navigationController?.pushViewController(profileVC, animated: true)
+        }
     }
         
         
