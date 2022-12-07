@@ -18,6 +18,11 @@
 		65FD61612923C71C00F2433F /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FD61602923C71C00F2433F /* ProfileHeaderView.swift */; };
 		65FD6166292E3E2400F2433F /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FD6165292E3E2400F2433F /* LogInViewController.swift */; };
 		65FD6169292EC40200F2433F /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FD6168292EC40200F2433F /* PostTableViewCell.swift */; };
+		65FD616C293FC63C00F2433F /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FD616B293FC63C00F2433F /* Photo.swift */; };
+		65FD616E293FC65400F2433F /* PhotoesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FD616D293FC65400F2433F /* PhotoesViewController.swift */; };
+		65FD6170293FC66500F2433F /* PhotoesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FD616F293FC66500F2433F /* PhotoesTableViewCell.swift */; };
+		65FD6172293FC68200F2433F /* PhotoesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FD6171293FC68200F2433F /* PhotoesCollectionViewCell.swift */; };
+		65FD6174293FC69800F2433F /* PhotoDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FD6173293FC69800F2433F /* PhotoDisplayViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +39,11 @@
 		65FD61602923C71C00F2433F /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		65FD6165292E3E2400F2433F /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		65FD6168292EC40200F2433F /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		65FD616B293FC63C00F2433F /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		65FD616D293FC65400F2433F /* PhotoesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoesViewController.swift; sourceTree = "<group>"; };
+		65FD616F293FC66500F2433F /* PhotoesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoesTableViewCell.swift; sourceTree = "<group>"; };
+		65FD6171293FC68200F2433F /* PhotoesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoesCollectionViewCell.swift; sourceTree = "<group>"; };
+		65FD6173293FC69800F2433F /* PhotoDisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDisplayViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +76,7 @@
 		65FD6139291E72AB00F2433F /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				65FD616A293FC62600F2433F /* Photo */,
 				65FD6167292EC3E600F2433F /* Post */,
 				65FD61622923C72F00F2433F /* Profile */,
 				65FD6143291E72AB00F2433F /* Assets.xcassets */,
@@ -96,6 +107,18 @@
 				65FD6168292EC40200F2433F /* PostTableViewCell.swift */,
 			);
 			path = Post;
+			sourceTree = "<group>";
+		};
+		65FD616A293FC62600F2433F /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				65FD616B293FC63C00F2433F /* Photo.swift */,
+				65FD616D293FC65400F2433F /* PhotoesViewController.swift */,
+				65FD616F293FC66500F2433F /* PhotoesTableViewCell.swift */,
+				65FD6171293FC68200F2433F /* PhotoesCollectionViewCell.swift */,
+				65FD6173293FC69800F2433F /* PhotoDisplayViewController.swift */,
+			);
+			path = Photo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,15 +191,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				65FD6157291E871100F2433F /* ProfileViewController.swift in Sources */,
+				65FD6172293FC68200F2433F /* PhotoesCollectionViewCell.swift in Sources */,
 				65FD6155291E870400F2433F /* FeedViewController.swift in Sources */,
 				65FD6166292E3E2400F2433F /* LogInViewController.swift in Sources */,
 				65FD613B291E72AB00F2433F /* AppDelegate.swift in Sources */,
 				65FD615F291EA35300F2433F /* InfoViewController.swift in Sources */,
 				65FD615D291E9C7100F2433F /* Post.swift in Sources */,
 				65FD613D291E72AB00F2433F /* SceneDelegate.swift in Sources */,
+				65FD616C293FC63C00F2433F /* Photo.swift in Sources */,
 				65FD6169292EC40200F2433F /* PostTableViewCell.swift in Sources */,
+				65FD6170293FC66500F2433F /* PhotoesTableViewCell.swift in Sources */,
+				65FD616E293FC65400F2433F /* PhotoesViewController.swift in Sources */,
 				65FD615B291E91FC00F2433F /* PostViewController.swift in Sources */,
 				65FD61612923C71C00F2433F /* ProfileHeaderView.swift in Sources */,
+				65FD6174293FC69800F2433F /* PhotoDisplayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

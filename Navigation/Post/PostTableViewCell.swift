@@ -91,8 +91,8 @@ class PostTableViewCell: UITableViewCell {
         authorPost.text = array.author
         imagePost.image = UIImage(named: array.image)
         descriptionTextLabel.text = array.description
-        numberOfLikesLabel.text = "Likes: \(array.likes)"
-        numberOfViewsLabel.text = "Views: \(array.views)"
+        numberOfLikesLabel.text = "Нравится: \(array.likes)"
+        numberOfViewsLabel.text = "Просмотров: \(array.views)"
     }
-
+    
 }

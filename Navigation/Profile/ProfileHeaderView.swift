@@ -11,7 +11,7 @@ class ProfileHeaderView: UIView {
 
     let avatarImageView: UIImageView = {
         let picture = UIImageView()
-        picture.image = UIImage(named: "Image")
+        picture.image = UIImage(named: "Profile")
         picture.clipsToBounds = true
         picture.layer.borderWidth = 3
         picture.layer.borderColor = UIColor.white.cgColor

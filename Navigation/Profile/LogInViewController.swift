@@ -67,7 +67,7 @@ class LogInViewController: UIViewController {
         button.backgroundColor = UIColor(named: "VKColor")
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
-        button.setTitle("Log in", for: .normal)
+        button.setTitle("Войти", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.setTitleColor(.init(white: 0, alpha: 0.8), for: .selected)
         button.setTitleColor(.init(white: 0, alpha: 0.8), for: .highlighted)
@@ -80,7 +80,7 @@ class LogInViewController: UIViewController {
     var passwordCounter: UILabel = {
         let counter = UILabel()
         counter.text = "Пароль слишком короткий"
-        counter.font = .systemFont(ofSize: 14)
+        counter.font = .systemFont(ofSize: 16)
         counter.textAlignment = .center
         counter.textColor = .lightGray
         counter.isHidden = true
@@ -162,13 +162,13 @@ class LogInViewController: UIViewController {
             
             passwordCounter.centerXAnchor.constraint(equalTo: passwordTextField.centerXAnchor),
             passwordCounter.widthAnchor.constraint(equalTo: passwordTextField.widthAnchor),
-            passwordCounter.heightAnchor.constraint(equalToConstant: 14),
-            passwordCounter.topAnchor.constraint(equalTo: stackForLogin.bottomAnchor),
+            passwordCounter.heightAnchor.constraint(equalToConstant: 16),
+            passwordCounter.topAnchor.constraint(equalTo: stackForLogin.bottomAnchor, constant: 2),
             
             logInButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             logInButton.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
             logInButton.heightAnchor.constraint(equalToConstant: 50),
-            logInButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 16)
+            logInButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 24)
         ])
     }
         
