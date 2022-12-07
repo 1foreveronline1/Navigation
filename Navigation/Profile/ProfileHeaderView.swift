@@ -4,7 +4,7 @@ class ProfileHeaderView: UIView {
         
     let profileView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .systemGray6
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -40,25 +40,25 @@ class ProfileHeaderView: UIView {
     }()
 
     let statusTextField: UITextField = {
-       let text = UITextField ()
-       text.backgroundColor = .white
-       text.font = .systemFont(ofSize: 15, weight: .regular)
-       text.textColor = .black
-       text.layer.cornerRadius = 12
-       text.borderStyle = .roundedRect
-       text.layer.borderWidth = 1
-       text.clipsToBounds = true
-       text.attributedPlaceholder = NSAttributedString(
-        string: "Ваш статус..."
-       )
-       text.keyboardType = .default
-       text.clearButtonMode = .whileEditing
-       text.contentHorizontalAlignment = .center
-       text.returnKeyType = .done
-       text.addTarget(Any?.self, action: #selector(statusTextChanged), for: .editingChanged)
-       text.translatesAutoresizingMaskIntoConstraints = false
-       return text
-   }()
+        let text = UITextField ()
+        text.backgroundColor = .white
+        text.font = .systemFont(ofSize: 15, weight: .regular)
+        text.textColor = .black
+        text.layer.cornerRadius = 12
+        text.borderStyle = .roundedRect
+        text.layer.borderWidth = 1
+        text.clipsToBounds = true
+        text.attributedPlaceholder = NSAttributedString(
+            string: "   Ваш статус..."
+        )
+        text.keyboardType = .default
+        text.clearButtonMode = .whileEditing
+        text.contentHorizontalAlignment = .center
+        text.returnKeyType = .done
+        text.addTarget(Any?.self, action: #selector(statusTextChanged), for: .editingChanged)
+        text.translatesAutoresizingMaskIntoConstraints = false
+        return text
+    }()
     
     let setStatusButton: UIButton = {
         let button = UIButton()
@@ -128,14 +128,23 @@ class ProfileHeaderView: UIView {
     }
     
     @objc func statButAction() {
+        
+        let charactersAmmo = statusText.count
+        
         if statusText == ""{
             statusTextField.attributedPlaceholder = NSAttributedString(
-                string: "Введите статус!",
+                string: "   Введите статус!",
                 attributes: [NSAttributedString.Key.foregroundColor: UIColor.red]
             )
-        }else {
+        } else if charactersAmmo > 30{
             statusTextField.attributedPlaceholder = NSAttributedString(
-                string: "Ваш статус..."
+                string: "   Слишком длинный статус!",
+                attributes: [NSAttributedString.Key.foregroundColor: UIColor.red]
+            )
+            statusTextField.text = ""
+        } else {
+            statusTextField.attributedPlaceholder = NSAttributedString(
+                string: "   Ваш статус..."
             )
             statusLabel.text = statusText
             statusTextField.text = ""

@@ -197,7 +197,13 @@ class ProfileViewController: UIViewController {
         @objc func addLike(gesture: UITapGestureRecognizer) {
             let indexPath = IndexPath(row: gesture.view!.tag, section: 1)
             let cell = tableView.cellForRow(at: indexPath) as! PostTableViewCell
-            postArray[indexPath.row].likes += 1
+            if postArray[indexPath.row].likeChecker % 2 == 0 {
+                postArray[indexPath.row].likes += 1
+                postArray[indexPath.row].likeChecker += 1
+            } else {
+                postArray[indexPath.row].likes -= 1
+                postArray[indexPath.row].likeChecker += 1
+            }
             cell.numberOfLikesLabel.text = "Нравится: \(postArray[indexPath.row].likes)"
         }
 }

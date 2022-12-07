@@ -2,13 +2,13 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
-    func createFirstController() -> UINavigationController{
+    func createSecondController() -> UINavigationController{
         let feedVC = UINavigationController(rootViewController: FeedViewController())
         feedVC.title = "Лента"
         feedVC.tabBarItem = UITabBarItem(title: "Лента", image: UIImage(systemName: "doc.richtext"), tag: 0)
         return feedVC
     }
-    func createSecondController() -> UINavigationController{
+    func createFirstController() -> UINavigationController{
         let logInVC = UINavigationController(rootViewController: LogInViewController())
         logInVC.title = "Профиль"
         logInVC.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.circle"), tag: 0)
