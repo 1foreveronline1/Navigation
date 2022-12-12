@@ -4,7 +4,7 @@ class ProfileViewController: UIViewController {
     let tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
-        table.rowHeight = 700
+        table.rowHeight = 650
         table.register(PostTableViewCell.self, forCellReuseIdentifier: "cell")
         table.register(PhotoesTableViewCell.self, forCellReuseIdentifier: "cellPhoto")
         return table
@@ -15,8 +15,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .lightGray
-        title = "Профиль"
-        
+        self.navigationController?.isNavigationBarHidden = true
         view.addSubview(tableView)
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -68,7 +67,7 @@ class ProfileViewController: UIViewController {
             if indexPath.section == 0 {
                 return 165
             } else {
-                return 700
+                return 650
             }
         }
         
@@ -189,7 +188,7 @@ class ProfileViewController: UIViewController {
         }
             
         @objc func closePost (_ tap: UITapGestureRecognizer) {
-            self.navigationController?.isNavigationBarHidden = false
+            self.navigationController?.isNavigationBarHidden = true
             self.tabBarController?.tabBar.isHidden = false
             tap.view?.removeFromSuperview()
         }

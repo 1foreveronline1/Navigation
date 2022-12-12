@@ -15,7 +15,7 @@ class PhotoesViewController: UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
-        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.isNavigationBarHidden = false
         navigationItem.title = "Фотографии"
         view.addSubview(photoesCollectionView)
         
@@ -28,6 +28,15 @@ class PhotoesViewController: UIViewController, UICollectionViewDelegate {
             photoesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             photoesCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        self.navigationController?.isNavigationBarHidden = true
     }
 }
 
